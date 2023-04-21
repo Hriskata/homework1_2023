@@ -76,3 +76,12 @@ void Store::add(Item* item)
 	}
 	store[size++] = item;
 }
+
+std::ostream& operator<<(std::ostream os, const Store& store)
+{
+	for (size_t i = 0; i < store.size; i++)
+	{
+		os << store.store[i]->get_name() << ": " << store.store[i]->get_availability();
+	}
+	return os;
+}
