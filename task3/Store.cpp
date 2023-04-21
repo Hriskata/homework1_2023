@@ -77,6 +77,19 @@ void Store::add(Item* item)
 	store[size++] = item;
 }
 
+Store Store::operator+(const Store& other) const
+{
+	int newMaxItems = capacity + other.capacity;
+	Store newStore(newMaxItems);
+	for (int i = 0; i < size; i++) {
+		newStore.add(new Item(*store[i]));
+	}
+	for (int i = 0; i < other.size; i++) {
+		newStore.add(new Item(*other.store[i]));
+	}
+	return newStore;
+}
+
 std::ostream& operator<<(std::ostream os, const Store& store)
 {
 	for (size_t i = 0; i < store.size; i++)
